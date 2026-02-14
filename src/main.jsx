@@ -135,6 +135,8 @@ function App() {
                 transition={{ delay: index * 0.06, duration: 0.35 }}
                 whileHover={{ y: -2 }}
                 className="rounded-full border border-black/40 px-4 py-2 text-sm text-black/90 dark:border-white/40 dark:text-white/90"
+                transition={{ delay: index * 0.05, duration: 0.35 }}
+                className="rounded-full border border-white/40 px-4 py-2 text-sm text-white/90"
               >
                 {skill}
               </motion.span>
@@ -164,6 +166,24 @@ function App() {
                 </motion.article>
               ))}
             </AnimatePresence>
+          <h2 className="text-xs uppercase tracking-widePlus text-white/50">Selected Work</h2>
+          <div className="grid gap-4 md:grid-cols-3">
+            {projects.map((project, index) => (
+              <motion.article
+                key={project.title}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.45, delay: index * 0.08 }}
+                className="group flex h-full flex-col justify-between gap-5 border border-white/15 p-5 transition hover:border-white/45"
+              >
+                <div className="space-y-3">
+                  <h3 className="text-xl font-medium">{project.title}</h3>
+                  <p className="text-sm leading-relaxed text-white/70">{project.description}</p>
+                </div>
+                <p className="text-xs uppercase tracking-widest text-white/50">{project.stack}</p>
+              </motion.article>
+            ))}
           </div>
         </section>
 
@@ -173,6 +193,7 @@ function App() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="border-t border-black/20 pt-8 text-sm text-black/60 dark:border-white/20 dark:text-white/60"
+          className="border-t border-white/20 pt-8 text-sm text-white/60"
         >
           <p>Available for remote opportunities • 2026</p>
         </motion.footer>
